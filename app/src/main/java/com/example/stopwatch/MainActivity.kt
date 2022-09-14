@@ -43,8 +43,11 @@ class MainActivity : AppCompatActivity() {
                 startStopButton.text = "STOP"
                 startStopButton.setBackgroundColor(Color.rgb(200, 80, 80))
                 isRunning = true
-                timerChronometer.setBase(SystemClock.elapsedRealtime())
-                timerChronometer.setBase(timerChronometer.getBase() + SystemClock.elapsedRealtime() - lastPause)
+                if (SystemClock.elapsedRealtime() > 5) {
+                    timerChronometer.setBase(timerChronometer.getBase() + SystemClock.elapsedRealtime() - lastPause)
+                } else {
+                    timerChronometer.setBase(SystemClock.elapsedRealtime())
+                }
                 timerChronometer.start()
             }
         }
